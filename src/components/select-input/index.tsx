@@ -61,6 +61,10 @@ export const SelectInput = ({
             type: Action.SetSearchInputRef,
             payload: searchInputRef,
         });
+        dispatch({
+            type: Action.SetSearchValue,
+            payload: inputProps?.defaultValue ?? '',
+        });
         return () => {
             showSubscription.remove();
             hideSubscription.remove();
