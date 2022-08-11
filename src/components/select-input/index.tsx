@@ -61,10 +61,6 @@ export const SelectInput = ({
             type: Action.SetSearchInputRef,
             payload: searchInputRef,
         });
-        dispatch({
-            type: Action.SetSearchValue,
-            payload: inputProps?.defaultValue ?? '',
-        });
         return () => {
             showSubscription.remove();
             hideSubscription.remove();
@@ -122,7 +118,7 @@ export const SelectInput = ({
                     : [styles.text, selectControlTextStyle]
             }
             textAlign={I18nManager.isRTL ? 'right' : 'left'}
-            value={searchValue}
+            value={inputProps?.defaultValue ? undefined : searchValue}
             onChangeText={onChangeText}
             onPressIn={disabled ? () => null : onPressSelectControl}
             {...inputProps}
