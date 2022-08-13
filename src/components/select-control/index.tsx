@@ -79,7 +79,8 @@ type SelectControlProps = OptionalToRequired<
             dispatch: DispatchType;
         } & Pick<Position, 'aboveSelectControl'> & {
             setPosition: OnSetPosition;
-        } & {inputProps?: TextInputProps}
+        } & {inputProps?: TextInputProps} &
+        {customArrowIcon: any}
 >;
 
 const arrowImage = require('./../../assets/icons/chevron-down.png');
@@ -121,6 +122,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             customLeftIconStyles,
             selectedOptionIndex,
             inputProps,
+            customArrowIcon,
         },
         ref,
     ) => {
@@ -220,25 +222,25 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         const renderArrowImage = (): ReactElement => {
             const accessibilityLabel = 'Arrow for opening dropdown';
             const arrow: ReactElement = animated ? (
-                <Animated.Image
-                    source={arrowImage}
+                <Animated.View
                     style={[
                         styles.arrowIcon,
                         { transform: [{ rotate }] },
                         selectControlArrowImageStyle,
                     ]}
-                />
+                >
+                    {customArrowIcon}
+                </Animated.View>
             ) : (
-                <Image
-                    source={arrowImage}
-                    style={[
-                        styles.arrowIcon,
-                        isOpened
-                            ? styles.arrowIconOpened
-                            : styles.arrowIconClosed,
-                        selectControlArrowImageStyle,
-                    ]}
-                />
+                <View style={[
+                    styles.arrowIcon,
+                    isOpened
+                        ? styles.arrowIconOpened
+                        : styles.arrowIconClosed,
+                    selectControlArrowImageStyle,
+                ]}>
+                    {customArrowIcon}
+                </View>
             );
             if (multiSelection) {
                 return (

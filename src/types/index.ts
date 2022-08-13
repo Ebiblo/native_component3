@@ -343,6 +343,13 @@ export interface SelectProps {
      *  @Search input props
      */
     inputProps?: TextInputProps;
+
+    /**
+     *  Other input props
+     *
+     *  @Search input props
+     */
+    customArrowIcon?: any;
 }
 
 /**
