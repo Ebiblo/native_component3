@@ -80,7 +80,8 @@ type SelectControlProps = OptionalToRequired<
         } & Pick<Position, 'aboveSelectControl'> & {
             setPosition: OnSetPosition;
         } & {inputProps?: TextInputProps} &
-        {customArrowIcon: any}
+        {customArrowIcon: any} &
+        {onChangeTextCallback?: (value: string) => void}
 >;
 
 const arrowImage = require('./../../assets/icons/chevron-down.png');
@@ -123,6 +124,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             selectedOptionIndex,
             inputProps,
             customArrowIcon,
+            onChangeTextCallback,
         },
         ref,
     ) => {
@@ -296,6 +298,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         setPosition={setPosition}
                         onPressSelectControl={onPressSelectControl}
                         inputProps={inputProps}
+                        onChangeTextCallback={onChangeTextCallback}
                     />
                 );
             }

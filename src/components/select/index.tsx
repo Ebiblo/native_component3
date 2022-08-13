@@ -93,6 +93,7 @@ export const Select = forwardRef(
             multiSelectionOptionStyle,
             inputProps,
             customArrowIcon,
+            onChangeTextCallback,
         } = props;
         const [state, dispatch] = useReducer(reducer, initialData);
         const {
@@ -398,6 +399,7 @@ export const Select = forwardRef(
                     onSelect={onSelect}
                     inputProps={inputProps}
                     customArrowIcon={customArrowIcon}
+                    onChangeTextCallback={onChangeTextCallback}
                 />
                 <OptionsList
                     NoOptionsComponent={NoOptionsComponent}

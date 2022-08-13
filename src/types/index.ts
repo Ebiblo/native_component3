@@ -350,6 +350,13 @@ export interface SelectProps {
      *  @Search input props
      */
     customArrowIcon?: any;
+
+    /**
+     *  Other input props
+     *
+     *  @Search input props
+     */
+    onChangeTextCallback?: (value: string) => void;
 }
 
 /**

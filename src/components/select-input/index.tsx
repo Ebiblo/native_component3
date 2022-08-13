@@ -30,7 +30,8 @@ type SelectInputProps = OptionalToRequired<
             | 'placeholderTextColor'
         > & { onPressSelectControl: OnPressSelectControlType } & {
             setPosition: OnSetPosition;
-        } & {inputProps?: TextInputProps}
+        } & {inputProps?: TextInputProps} &
+        {onChangeTextCallback?: (value: string) => void}
 >;
 
 export const SelectInput = ({
@@ -47,6 +48,7 @@ export const SelectInput = ({
     placeholderTextColor,
     selectControlTextStyle,
     inputProps,
+    onChangeTextCallback,
 }: SelectInputProps) => {
     const searchInputRef = useRef<TextInput>(null);
 
@@ -72,6 +74,9 @@ export const SelectInput = ({
     }, []);
 
     const onChangeText = (payload: string) => {
+        if (onChangeTextCallback) {
+            onChangeTextCallback(payload);
+        }
         if (!disabled) {
             if (!isOpened) {
                 dispatch({ type: Action.Open });
